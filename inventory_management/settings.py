@@ -88,8 +88,8 @@ DATABASES = {
         'PORT':'',
         'USER': 'eden',
         'PASSWORD': 'eden',
-
         'OPTIONS': {
+            'host_is_server': True, 'driver': 'ODBC Driver 11 for SQL Server',
             'driver': 'ODBC Driver 13 for SQL Server',
         }
     }
