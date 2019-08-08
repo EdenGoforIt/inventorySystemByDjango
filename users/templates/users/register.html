@@ -1,0 +1,120 @@
+ {% load static%}
+ {% load crispy_forms_tags %}
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel="stylesheet" href="{% static './../../static/css/stylesheet.css' %}">
+     <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}">
+     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+
+     <title>Inventory</title>
+     <style>
+         .nav-link:hover {
+             background-color: gainsboro;
+
+         }
+     </style>
+ </head>
+
+ <body>
+     <nav class="navbar navbar-expand-lg static-top navCustom">
+         <div class="container">
+             <a class="navbar-brand" href="{% url 'index' %}">
+                 <img src="{% static 'img/logo2.png' %}" width="120" height="150" alt="" />
+             </a>
+             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse " id="navbarResponsive">
+                 <ul class="navbar-nav mr-auto">
+                     <li class="nav-item active">
+                         <a class="nav-link" style="color:#8B4513;   font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'index' %}">Home
+                             <span class="sr-only">(current)</span>
+                         </a>
+                     </li>&nbsp;&nbsp;&nbsp;
+                     <li class="nav-item">
+                         <a class="nav-link" style="color:#8B4513  ;font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'display_product' %}">Products</a>
+                     </li>&nbsp;&nbsp;&nbsp;
+                     <li class="nav-item">
+                         <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'display_purchase' %}">Incoming
+                             Purchases</a>
+                     </li>&nbsp;&nbsp;&nbsp;
+                     <li class="nav-item">
+                         <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'display_order' %}">Outgoing Orders</a>
+                     </li>&nbsp;&nbsp;&nbsp;
+                     <li class="nav-item">
+                         <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="#">Report</a>
+                     </li>&nbsp;&nbsp;&nbsp;
+
+                 </ul>
+                 <ul class="navbar-nav ml-auto">
+                     <li class="nav-item">
+                         {%  if user.is_authenticated %}
+                         <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href=" {% url 'logout' %}" style=" color:#8B4513">Logout</a>
+                         {% else %}
+
+                         <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href=" {% url 'login' %}">Login</a>
+
+
+                         {% endif %}
+                     </li>
+                     <li class="nav-item">
+                         {%  if user.is_anonymous  %}
+                         <a class="nav-link" href=" {% url 'register' %}" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;">Register</a>
+
+                         {% endif %}
+                     </li>
+                 </ul>
+
+             </div>
+         </div>
+     </nav>
+
+     <div class="container  ">
+         <div class="row">
+             <div class="col-6 mx-auto">
+                 {% load crispy_forms_tags %}
+                 <div class="content-section container">
+                     <form method="POST">
+                         {% csrf_token %}
+                         <fieldset class="form-group ">
+                             <legend class="border-bottom mb-4 ">Join Today</legend>
+                             {{ form |crispy}}
+                         </fieldset>
+                         <div class="form-group">
+                             <button class="btn btn-outline-dark" type="submit">Sign Up</button>
+                         </div>
+                     </form>
+                     <div class="border-top pt-3">
+                         <div class="text-muted">
+                             Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+                         </div>
+                     </div><br>
+                 </div>
+             </div>
+         </div>
+     </div>

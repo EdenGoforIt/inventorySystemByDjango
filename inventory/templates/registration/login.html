@@ -12,6 +12,12 @@
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 
     <title>Inventory</title>
+    <style>
+        .nav-link:hover {
+            background-color: gainsboro;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -27,30 +33,40 @@
             <div class="collapse navbar-collapse " id="navbarResponsive">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" style="color:#8B4513;" href="{% url 'index' %}">Home
+                        <a class="nav-link" style="color:#8B4513;   font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'index' %}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>&nbsp;&nbsp;&nbsp;
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#8B4513" href="{% url 'display_product' %}">Products</a>
+                        <a class="nav-link" style="color:#8B4513  ;font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'display_product' %}">Products</a>
                     </li>&nbsp;&nbsp;&nbsp;
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#8B4513" href="{% url 'display_purchase' %}">Incoming
+                        <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'display_purchase' %}">Incoming
                             Purchases</a>
                     </li>&nbsp;&nbsp;&nbsp;
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#8B4513" href="{% url 'display_order' %}">Outgoing Orders</a>
+                        <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="{% url 'display_order' %}">Outgoing Orders</a>
                     </li>&nbsp;&nbsp;&nbsp;
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#8B4513" href="#">Report</a>
+                        <a class="nav-link" style="color:#8B4513;  font-size: 22px;
+    font-weight:bold; 
+    font-family: 'Oswald', sans-serif;" href="#">Report</a>
                     </li>&nbsp;&nbsp;&nbsp;
 
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         {%  if user.is_authenticated %}
-                        <a class="nav-link" href=" {% url 'logout'  %}" style=" color:#8B4513; font-size: 22px;
-                            font-weight:bold; font-family: 'Oswald' , sans-serif;">Logout</a>
+                        <a class="nav-link" href=" {% url 'logout' %}" style=" color:#8B4513;
+                            font-size: 22px; font-weight:bold; font-family: 'Oswald' , sans-serif;">Logout</a>
                         {% else %}
 
                         <a class="nav-link" href=" {% url 'login' %}" style="color:#8B4513;  font-size: 22px;
@@ -74,21 +90,28 @@
         </div>
     </nav>
 
-    <div class="container">
-        {% if messages %}
+    {% load crispy_forms_tags %}
+    <div class="container  ">
+        <div class="row">
+            <div class="col-6 mx-auto">
 
-        {% for message in messages %}
-        <div class="alert alert-{{message.tags}}">
-            {{message}}
+                <div class="content-section">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Log In</legend>
+                            {{ form|crispy }}
+                        </fieldset>
+                        <div class="form-group">
+                            <button class="btn btn-outline-dark" type="submit">Login</button>
+                        </div>
+                    </form>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
         </div>
-        {% endfor%}
-
-        {% endif %}
-        {% block body %}
-
-        {% endblock %}
     </div>
-
-</body>
-
-</html>

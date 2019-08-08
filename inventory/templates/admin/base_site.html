@@ -1,0 +1,13 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}{{ title }} | {{ _('SIT Inventory System Admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">
+        {{ _('SIT Inventory System Admin') }}
+    </a>
+</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
