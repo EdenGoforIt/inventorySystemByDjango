@@ -1,0 +1,34 @@
+{%  extends 'base.html' %}
+
+{% block body %}
+<div id="container">
+ 
+
+</div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Current Inventory'
+        },
+        xAxis: {
+            //categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+            categories: labels
+
+        },
+        series: [{
+            name: 'numbers',
+            data: productonhands
+        }, ]
+    });
+</script>
+
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+
+
+
+
+{% endblock %}

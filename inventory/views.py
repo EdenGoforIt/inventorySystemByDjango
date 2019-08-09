@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from models import Product, Purchase, Order
+from django.http import JsonResponse
 
 
 def index(request):
@@ -39,4 +40,10 @@ def display_order(request):
 
 
 def display_report(request):
-    pass
+    labels = Product.objects.values_list('productlabel')
+    productonhand = Product.objects.values_list('inventoryonhand')
+    context = {
+        'labels': labels,
+        'productonhands': productonhand
+    }
+    return render(request, 'report.html', context)

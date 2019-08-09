@@ -15,6 +15,6 @@ urlpatterns = [
     url(r'^display_product$', display_product, name='display_product'),
     url(r'^display_purchase$', display_purchase, name='display_purchase'),
     url(r'^display_order$', display_order, name='display_order'),
-    url(r'^display_report$', display_report, name='display_report '),
+    url(r'^display_report$', display_report, name='display_report'), 
 
 ]

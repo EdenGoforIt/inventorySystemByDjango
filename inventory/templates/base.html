@@ -42,7 +42,7 @@
                         <a class="nav-link" style="color:#8B4513" href="{% url 'display_order' %}">Outgoing Orders</a>
                     </li>&nbsp;&nbsp;&nbsp;
                     <li class="nav-item">
-                        <a class="nav-link" style="color:#8B4513" href="#">Report</a>
+                        <a class="nav-link" style="color:#8B4513" href="{% url 'display_report' %}">Report</a>
                     </li>&nbsp;&nbsp;&nbsp;
 
                 </ul>
@@ -90,5 +90,22 @@
     </div>
 
 </body>
+<script src="{% static '/js/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static '/js/jquery.js' %}"></script>
+<script src="{% static '/js/dataTables.min.js' %}"></script>
+<link rel="stylesheet" href="{% static '/js/jquery.js' %}" type="text/javascript" />
+<link rel="stylesheet" href="{% static '/js/jquery.dataTables.min.js' %}" type="text/javascript" />
+<link rel="stylesheet" href="{% static '/css/dataTables.bootstrap4.min.css' %}" type="text/stylesheet" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css" />
+<link rel="stylesheet" type="text/javascript" href="https://cdnjs.com/libraries/Chart.js" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+<script>
+    $('#productTable').dataTable();
+    $('#orderTable').dataTable();
+    $('#purchaseTable').dataTable();
+</script>
+
 
 </html>
