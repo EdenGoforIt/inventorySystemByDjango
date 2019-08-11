@@ -3,10 +3,18 @@
 {% block body %}
 <div id="container">
  
+    {% for item in productlabel_json %}
+                <td>{{ item }} </td>
+    {% endfor %}
+     {% for item in invengoryonhand_json %}
+     <td>{{ item }} </td>
+     {% endfor %}
 
 </div>
 <script src="https://code.highcharts.com/highcharts.src.js"></script>
 <script>
+    var labels = {{ productlabel_json|safe }};
+    var inventoryonhand = {{ invengoryonhand_json | safe}}
     Highcharts.chart('container', {
         chart: {
             type: 'column'
@@ -15,13 +23,16 @@
             text: 'Current Inventory'
         },
         xAxis: {
-            //categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+            
+            // categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania', 'America', 'America', 'America', 'America',
+            // 'America']
+            
             categories: labels
 
         },
         series: [{
-            name: 'numbers',
-            data: productonhands
+            name: 'Inventory on hand',
+            data: inventoryonhand
         }, ]
     });
 </script>

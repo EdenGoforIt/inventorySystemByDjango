@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from models import Product, Purchase, Order
 from django.http import JsonResponse
+import json
+from django.core.serializers.json import DjangoJSONEncoder
+
 
 
 def index(request):
@@ -40,10 +43,14 @@ def display_order(request):
 
 
 def display_report(request):
-    labels = Product.objects.values_list('productlabel')
-    productonhand = Product.objects.values_list('inventoryonhand')
+    productlabels = Product.objects.values_list('productlabel')
+    productlabel_json = json.dumps(list(productlabels), cls=DjangoJSONEncoder)
+    
+    inventoryonhand = Product.objects.values_list('inventoryonhand')
+    invengoryonhand_json = json.dumps(list(inventoryonhand), cls=DjangoJSONEncoder)
     context = {
-        'labels': labels,
-        'productonhands': productonhand
+
+        'productlabel_json': productlabel_json,
+        'invengoryonhand_json': invengoryonhand_json
     }
     return render(request, 'report.html', context)
