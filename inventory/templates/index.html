@@ -35,7 +35,11 @@
                 <td> {{ item.startinginventory }}</td>
                 <td> {{ item.inventoryreceived }}</td>
                 <td> {{ item.inventoryshipped }}</td>
-                <td>{{ item.inventoryonhand }} </td>
+               {%if item.inventoryonhand  <  item.minimumrequired %}
+                    <td bgcolor="#FF0000">{{ item.inventoryonhand }} </td> 
+                {% else %}
+                    <td>{{ item.inventoryonhand }} </td>
+                {% endif %}
                 <td>{{ item.minimumrequired }} </td>
             </tr>
 
@@ -58,7 +62,7 @@
 <br>
 <h2 class="text-center">Incoming Purchase</h2>
 <table class="table table-hover" id="purchaseTable">
-    
+
     <thead>
         <th>ID</th>
         <th>SUPPLIER ID</th>
@@ -86,7 +90,7 @@
 <br>
 <h2 class="text-center">Outgoing Orders</h2>
 <table class="table table-hover" id="orderTable">
- 
+
     <thead>
         <th>ID</th>
         <th>TITLE</th>

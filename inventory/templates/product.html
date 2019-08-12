@@ -29,7 +29,11 @@
                 <td> {{ item.startinginventory }}</td>
                 <td> {{ item.inventoryreceived }}</td>
                 <td> {{ item.inventoryshipped }}</td>
-                <td>{{ item.inventoryonhand }} </td>
+                 {%if item.inventoryonhand  <  item.minimumrequired %}
+                 <td bgcolor="#FF0000">{{ item.inventoryonhand }} </td>
+                 {% else %}
+                 <td>{{ item.inventoryonhand }} </td>
+                 {% endif %}
                 <td>{{ item.minimumrequired }} </td>
             </tr>
 
