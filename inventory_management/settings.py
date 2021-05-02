@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'inventory_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'inventory',
+        'NAME': 'inventory_management',
         'HOST': '(LocalDb)\MSSQLLocalDB',
         'PORT': '',
         'USER': 'eden',
